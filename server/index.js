@@ -64,9 +64,6 @@ app.get("/etudes/:id", async (req, res) => {
 
 app.put("/etudes/:id", async (req, res) => {
     try {
-        console.log("id = " + req.params);
-        console.log(req.body);
-
         const { id } = req.params;
         const { etude_name,
             book,
