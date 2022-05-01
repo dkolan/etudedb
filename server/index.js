@@ -2,6 +2,7 @@ const express = require("express")
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
+const { query } = require("express");
 
 //Middleware
 app.use(cors());
@@ -60,8 +61,6 @@ app.get("/etudes/:id", async (req, res) => {
 
 //Update an etude
 
-//TODO: Figure out how to dynamically update DB based on body
-
 app.put("/etudes/:id", async (req, res) => {
     try {
         const { id } = req.params;
@@ -84,4 +83,18 @@ app.put("/etudes/:id", async (req, res) => {
     } catch (err) {
         console.error(err.message);
     }
+})
+
+//Delete etude
+
+app.delete("/etudes/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteEtude = await pool.query('DELETE FROM etude WHERE etude_id = $1', [id])
+
+        res.json("Etude was deleted.")
+    } catch (err) {
+        console.error(err.message);
+    }
+    
 })
