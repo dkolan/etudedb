@@ -25,6 +25,9 @@ app.post("/etudes" , async (req, res) => {
                 range_high,
                 range_low } = req.body
         
+                // console.log(etude_name, book, composer, etude_key, tempo, range_high, range_low);
+
+
         const newEtude = await pool.query("INSERT INTO etude (etude_name,"
                                             + "book, composer, etude_key,"
                                             + "tempo, range_high, range_low)"
@@ -32,7 +35,6 @@ app.post("/etudes" , async (req, res) => {
                                             [etude_name, book, composer,
                                             etude_key, tempo, range_high, range_low]);    
         res.json(newEtude.rows[0]);
-        // console.log(etude_name, book, composer, etude_key, tempo, range_high, range_low);
     } catch (err) {
         console.error(err.message)
     }

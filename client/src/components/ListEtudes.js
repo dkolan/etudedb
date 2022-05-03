@@ -37,7 +37,7 @@ const getEtudes = async () => {
                 </thead>
                 <tbody>
                     {etudes.map(etude => (
-                        <tr>
+                        <tr key={etude.etude_id}>
                             <td>{etude.etude_name}</td>
                             <td>{etude.book}</td>
                             <td>{etude.composer}</td>
